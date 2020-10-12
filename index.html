@@ -88,6 +88,19 @@
     var head =  document.querySelector('head')
     var link  = document.querySelector('link')
 
+    function checkOnline(url, error, ok) {
+        try {
+            var scriptElem = document.createElement('script');
+            scriptElem.type = 'text/javascript';
+            scriptElem.onerror = function(){error();};
+            scriptElem.onload = function(){ok();};
+            scriptElem.src = url;
+            document.getElementsByTagName("body")[0].appendChild(scriptElem);
+        } catch(err) {
+            error(err);
+        }
+    };
+
     function setColorGreen(tag_dom) {
         tag_dom.style.color = "white"
         tag_dom.style.backgroundColor = "green"
@@ -98,25 +111,26 @@
         tag_dom.style.backgroundColor = "red"
     }
 
-    function verSeCaiu() {
-        link.replaceWith(link)
-        
-        if(online){
-            texto.innerText = "NÃO"
-            setColorGreen(texto)
-        }else{
-            if(i <=0){
+    function ok(){
+        texto.innerText = "NÃO"
+        setColorGreen(texto)
+    }
+
+    function error(erro){
+        if(i <=0){
                 texto.innerText = "CALMA..."
-            }else{
-                texto.innerText = "SIM"
-                setColorRed(texto)
-            }
+        }else{
+            texto.innerText = "SIM"
+            setColorRed(texto)
         }
-        online = false
+    }
+
+    function verSeCaiu() {
+        checkOnline('https://ead.ifms.edu.br', error, ok)
         i +=1
     }
     verSeCaiu()
-    setInterval(verSeCaiu, 5000)
+    setInterval(verSeCaiu, 500)
 </script>
 </body>
 </html>
