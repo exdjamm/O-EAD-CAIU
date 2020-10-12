@@ -6,11 +6,11 @@
     <title>O EAD CAIU?</title>
     
     <script>
-	 function setOn(){
-    		console.log(online)
-	 online = true;	
-    		console.log(online)
-    	}
+        // let online = false;
+        function setOn(){
+            online = true;	
+            console.log(online)
+        }
     </script>
     <link rel="stylesheet" type="text/css" href="https://ead.ifms.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css" onload="setOn()">
     <style>
@@ -52,7 +52,7 @@
             font-size: 8rem;
             height: 12rem;
             width: 39rem;
-
+            /* color: white; */
             background-color: blue;
             display: flex;
             justify-content: center;
@@ -74,35 +74,49 @@
 <body>
     <div id="content">
         <div class="retangulo">
-            <span>CALMA</span>
+            <span>CALMA...</span>
         </div>
         <button >
             Ver de novo
         </button>
 
     </div>
-    <script>
-    	let online = false;
-    	let i = 0
-        var texto = document.querySelector('.retangulo')
-var 	head =  document.querySelector('head')
-	var link  = document.querySelector('link')
-      	function verSeCaiu() {
-	head.append(link.cloneNode())
-            if(online){
-                texto.innerText = "NÃO"
-            }else{
-            	if(i <=0){
+<script>
+    let online;
+    let i = 0
+    var texto = document.querySelector('.retangulo')
+    var head =  document.querySelector('head')
+    var link  = document.querySelector('link')
+
+    function setColorGreen(tag_dom) {
+        tag_dom.style.color = "white"
+        tag_dom.style.backgroundColor = "green"
+    }
+
+    function setColorRed(tag_dom) {
+        tag_dom.style.color = "white"
+        tag_dom.style.backgroundColor = "red"
+    }
+
+    function verSeCaiu() {
+        link.replaceWith(link)
+        
+        if(online){
+            texto.innerText = "NÃO"
+            setColorGreen(texto)
+        }else{
+            if(i <=0){
                 texto.innerText = "CALMA..."
-                }else{
-                	texto.innerText = "SIM"
-                }
+            }else{
+                texto.innerText = "SIM"
+                setColorRed(texto)
             }
-	        online = false
-	        i +=1
         }
-        verSeCaiu()
-        setInterval(verSeCaiu, 5000)
-    </script>
+        online = false
+        i +=1
+    }
+    verSeCaiu()
+    setInterval(verSeCaiu, 5000)
+</script>
 </body>
 </html>
