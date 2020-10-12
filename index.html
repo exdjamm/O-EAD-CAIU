@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O EAD CAIU?</title>
-    
-    <script>
-        // let online = false;
-        function setOn(){
-            online = true;	
-            console.log(online)
-        }
-    </script>
-    <link rel="stylesheet" type="text/css" href="https://ead.ifms.edu.br/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css" onload="setOn()">
     <style>
         :root{
             --color-bg: #101010;
@@ -86,20 +77,16 @@
     let i = 0
     var texto = document.querySelector('.retangulo')
     var head =  document.querySelector('head')
-    var link  = document.querySelector('link')
 
     function checkOnline(url, error, ok) {
-        try {
-            var scriptElem = document.createElement('script');
-            scriptElem.type = 'text/javascript';
-            scriptElem.onerror = function(){error();};
-            scriptElem.onload = function(){ok();};
-            scriptElem.src = url;
-            document.getElementsByTagName("body")[0].appendChild(scriptElem);
-        } catch(err) {
-            error(err);
+        var img = new Image();
+        img.src = url;
+        if(img.height>0){
+            ok();
+        } else {
+            error();
         }
-    };
+    }
 
     function setColorGreen(tag_dom) {
         tag_dom.style.color = "white"
@@ -126,11 +113,11 @@
     }
 
     function verSeCaiu() {
-        checkOnline('https://ead.ifms.edu.br', error, ok)
-        i +=1
+        checkOnline('https://ead.ifms.edu.br/theme/image.php/ifms/assign/1596027885/icon', error, ok)
+        i = 1
     }
     verSeCaiu()
-    setInterval(verSeCaiu, 500)
+    setInterval(verSeCaiu, 3000)
 </script>
 </body>
 </html>
