@@ -82,7 +82,7 @@
 
     function checkOnline(url, error, ok) {
         var img = new Image();
-        img.src = url;
+        img.src = url + "?a=" + Math.random();
         if(img.height>0){
             ok();
         } else {
