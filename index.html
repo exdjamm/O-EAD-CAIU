@@ -75,6 +75,8 @@
 <script>
     let online;
     let i = 0
+    let url = 'https://ead.ifms.edu.br/theme/image.php/ifms/assign/1596027885/icon'; 
+    // let url = "https://ead.ifms.edu.br/webservice/rest/server.php"
     var texto = document.querySelector('.retangulo')
     var head =  document.querySelector('head')
 
@@ -87,6 +89,36 @@
             error();
         }
     }
+
+    // function checkOnline(url, error, ok){
+    //     try{
+    //         fetch(url, 
+    //             {
+    //                 method:"GET",
+    //                 headers: {"Access-Control-Allow-Origin": "*"}, 
+    //                 mode: "cors"
+    //             }
+    //             ).then(
+    //             function (response) {
+    //                 console.log(response);
+    //                 var isOnline = false;
+    //                 if(isOnline){
+    //                     ok();
+    //                 }
+    //                 else{
+    //                     error();
+    //                 }
+    //             }
+
+    //         );
+    //     }catch(e){
+    //         if (e instanceof TypeError) {
+    //             error()
+    //         } else if (e instanceof RangeError) {
+    //             error()
+    //         }
+    //     }
+    // }
 
     function setColorGreen(tag_dom) {
         tag_dom.style.color = "white"
@@ -113,7 +145,7 @@
     }
 
     function verSeCaiu() {
-        checkOnline('https://ead.ifms.edu.br/theme/image.php/ifms/assign/1596027885/icon', error, ok)
+        checkOnline(url, error, ok)
         i = 1
     }
     verSeCaiu()
