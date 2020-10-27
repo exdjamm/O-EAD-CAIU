@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta Http-Equiv="Cache-Control" Content="no-cache">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O EAD CAIU?</title>
@@ -82,7 +83,8 @@
 
     function checkOnline(url, error, ok) {
         var img = new Image();
-        img.src = url + "?a=" + Math.random();
+        img.src = url ;
+        console.log(img.src, img.height)
         if(img.height>0){
             ok();
         } else {
