@@ -11,89 +11,35 @@
       gtag('config', 'G-ZRZC0WEPK4');
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <meta Http-Equiv="Cache-Control" Content="no-cache">
+    <meta Http-Equiv="Cache-Control" Content="no-cache"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>O EAD CAIU?</title>
-    <style>
-        :root{
-            --color-bg: #101010;
-            --color-red:rgb(0,0,0);
-            --color-red-shadow:rgb(0,0,0);
-            --color-green:rgb(0,0,0);
-            --color-green-shadow:rgb(0,0,0);
-            font-size: 60%;
-        }
-        body, html{
-            height: 100vh;
-            width: 100vw;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        body{
-            background-color: var(--color-bg);
-            
-        }
-        button{
-            font-size: 3rem;
-            height: 5rem;
-            width: 24rem;
-            border-radius: 0.5rem;
-            margin-top: 2rem;
-            text-align: center;
-        }
-        button:hover{
-            background-color: rgb(177, 177, 177);
-        }
-        .retangulo{
-            
-            font-size: 8rem;
-            height: 12rem;
-            width: 39rem;
-            /* color: white; */
-            background-color: blue;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: .2rem .2rem 0.3rem  var(--color-red-shadow);
-        }
-        #content{
-            height: 100vh;
-
-            display: flex;
-            /* flex-direction: column; */
-            flex-flow: column;
-            justify-content: center;
-            align-items: center;
-        }
-        .apoia{
-        	background-color: blue;
-        }
-    </style>
-
+    <!-- Importing style.css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Importing PHP rules for no caching -->
+    <script src="nocaching.php"></script>
 </head>
 <body>
-    <div id="content">
+    <main>
         <div class="retangulo">
             <span>CALMA...</span>
         </div>
-        <button >
+        <button id="btn">
             Ver de novo
         </button>
 
-    </div>
-    
+    </main>
+    <!-- Sugiro um 'a href' para o site do ifms, caso esteja 'on' -->
     <div class="apoia" hidden>
     	<p>apoia ai [carinha de pidão]</p>
     </div>
 <script>
+    
 	alert("É recomendado que acesse o site numa guia privativa, pela questão do cache do navegador!\nUtilizar sem limpar o cache ou não estar numa guia privativa pode causar falso positivo no resultado!")
     let online;
     let i = 0
+    let btn=document.getElementById('btn');
     let url = 'https://ead.ifms.edu.br/theme/image.php/ifms/assign/1596027885/icon'; 
     // let url = "https://ead.ifms.edu.br/webservice/rest/server.php"
     var texto = document.querySelector('.retangulo')
@@ -121,7 +67,7 @@
     //             ).then(
     //             function (response) {
     //                 console.log(response);
-    //                 var isOnline = false;
+    //                 var isOnline = false; Você setou como falso e verificou em seguida?
     //                 if(isOnline){
     //                     ok();
     //                 }
@@ -153,10 +99,11 @@
     function ok(){
         texto.innerText = "NÃO"
         setColorGreen(texto)
+        i=3;
     }
 
     function error(erro){
-        if(i <=0){
+        if(i <=2){
                 texto.innerText = "CALMA..."
         }else{
             texto.innerText = "SIM"
@@ -166,10 +113,20 @@
 
     function verSeCaiu() {
         checkOnline(url, error, ok)
-        i = 1
+        i++;
+        if(i<3){
+            setTimeout(()=>{
+                verSeCaiu()
+                console.log(i)
+            },3000);
+        }
     }
     verSeCaiu()
-    setInterval(verSeCaiu, 3000)
+    btn.addEventListener("click", ()=>{
+        i=0
+        texto.style.backgroundColor="blue"
+        verSeCaiu()
+    })
 </script>
 </body>
 </html>

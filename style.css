@@ -1,0 +1,65 @@
+:root{
+    --color-bg: #101010;
+    --color-red:rgb(0,0,0);
+    --color-red-shadow:rgb(0,0,0);
+    --color-green:rgb(0,0,0);
+    --color-green-shadow:rgb(0,0,0);
+    font-size: 60%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body, html{
+    height: 100vh;
+    width: 100vw;
+}
+body{
+    background-color: var(--color-bg);
+    
+}
+/* #content{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+} */
+main{
+    height: 100vh;
+    display: flex;
+    /*flex-direction: column;*/
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+.retangulo{
+    margin: 0 auto 0;
+    border-radius: 8px;
+    font-size: 8rem;
+    height: 12rem;
+    width: 39rem;
+    /* color: white; */
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: .2rem .2rem 0.3rem  var(--color-red-shadow);
+}
+button{
+    font-size: 3rem;
+    height: 5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+button:hover{
+    background-color: rgb(177, 177, 177);
+}
+.apoia{
+    background-color: blue;
+}
