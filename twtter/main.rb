@@ -1,1 +1,0 @@
-# Dentro de String faça " #{nome_var ou qualquer outro valor} "
