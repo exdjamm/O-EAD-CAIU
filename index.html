@@ -45,21 +45,21 @@
     var texto = document.querySelector('.retangulo')
     var head =  document.querySelector('head')
 
-    function checkOnline(url, error, ok) {
-        fetch("https://ead-caiu.vercel.app/api/see-online", {
-        method: "POST",
-        mode:"cors"
-        }).then((res) => {
-            const data = res.json()
-
-            console.log(data)
-
-            if(data.status){
-                ok()
-            }else{
-                error()
-            }
+    async function  checkOnline(url, error, ok) {
+        const res = await fetch("https://ead-caiu.vercel.app/api/see-online", {
+            method: "POST",
+            mode:"cors"
         })
+
+        const data = res.json()
+        console.log(data)
+
+        if(data.status){
+            ok()
+        }else{
+            error()
+        }
+
     }
 
     // function checkOnline(url, error, ok){
@@ -116,8 +116,8 @@
         }
     }
 
-    function verSeCaiu() {
-        checkOnline(url, error, ok)
+    async function verSeCaiu() {
+        await checkOnline(url, error, ok)
         i = 1
     }
     verSeCaiu()
