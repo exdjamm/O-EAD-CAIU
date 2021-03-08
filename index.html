@@ -37,7 +37,7 @@
     	<p>apoia ai [carinha de pidão]</p>
     </div>
 <script>
-	alert("É recomendado que acesse o site numa guia privativa, pela questão do cache do navegador!\nUtilizar sem limpar o cache ou não estar numa guia privativa pode causar falso positivo no resultado!")
+	// alert("É recomendado que acesse o site numa guia privativa, pela questão do cache do navegador!\nUtilizar sem limpar o cache ou não estar numa guia privativa pode causar falso positivo no resultado!")
     let online;
     let i = 0
     let url = 'https://ead.ifms.edu.br/theme/image.php/ifms/assign/1596027885/icon'; 
@@ -46,14 +46,22 @@
     var head =  document.querySelector('head')
 
     function checkOnline(url, error, ok) {
-        var img = new Image();
-        img.src = url ;
-        console.log(img.src, img.height)
-        if(img.height>0){
-            ok();
-        } else {
-            error();
-        }
+        fetch("https://exodopc:3000/api/see-online", {
+        "headers": {
+            "Pragma": "no-cache",
+            "Cache-Control": "no-cache", 
+            "Access-Control-Allow-Origin": "*"
+        },
+        method: "POST",
+        mode:"cors"
+        }).then((res) => {
+            const data = res.json()
+            if(data.status){
+                ok()
+            }else{
+                error()
+            }
+        })
     }
 
     // function checkOnline(url, error, ok){
