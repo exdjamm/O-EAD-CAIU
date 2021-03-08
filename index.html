@@ -47,11 +47,6 @@
 
     function checkOnline(url, error, ok) {
         fetch("https://ead-caiu.vercel.app/api/see-online", {
-        "headers": {
-            "Pragma": "no-cache",
-            "Cache-Control": "no-cache", 
-            "Access-Control-Allow-Origin": "*"
-        },
         method: "POST",
         mode:"cors"
         }).then((res) => {
